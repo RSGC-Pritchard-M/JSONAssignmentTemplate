@@ -12,7 +12,10 @@ import CoreLocation
 
 class ViewController : UIViewController {
     
-    @IBOutlet weak var highText: UITextField!
+
+    @IBOutlet weak var highLabel: UILabel!
+    @IBOutlet weak var lowLabel: UILabel!
+    @IBOutlet weak var textLabel: UILabel!
     // Views that need to be accessible to all methods
     let jsonResult = UILabel()
     
@@ -22,7 +25,9 @@ class ViewController : UIViewController {
     // If data is successfully retrieved from the server, we can parse it here
     func parseMyJSON(theData : NSData) {
         
-        
+        var high = ""
+        var low = ""
+        var text = ""
         // De-serializing JSON can throw errors, so should be inside a do-catch structure
         do {
             
@@ -48,10 +53,12 @@ class ViewController : UIViewController {
                         var firstDidRun = false
                         for data in query3 {
                             if (firstDidRun==false) {
-                                print(data)
-                                print(data["high"])
-                                print(data["low"])
-                                print(data["text"])
+                                var range = String(data["high"]).startIndex.advancedBy(9)..<String(data["high"]).endIndex.advancedBy(-1)
+                                high = (String(data["high"])[range])
+                                range = String(data["low"]).startIndex.advancedBy(9)..<String(data["low"]).endIndex.advancedBy(-1)
+                                 low = (String(data["low"])[range])
+                                range = String(data["text"]).startIndex.advancedBy(9)..<String(data["text"]).endIndex.advancedBy(-1)
+                                 text = (String(data["text"])[range])
                                 firstDidRun = true
                             }
                         }
@@ -74,9 +81,9 @@ class ViewController : UIViewController {
                 // Create a space in memory to store the current location
                 //var currentLocation = CLLocation()
                 
-                
-                
-                
+                self.highLabel.text = "With a high of "     + high + "°F"
+                self.lowLabel.text = "With a low of "       + low + "°F"
+                self.textLabel.text = "Todays weather is "  + text
                 
             }
             
