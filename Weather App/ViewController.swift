@@ -12,6 +12,7 @@ import CoreLocation
 
 class ViewController : UIViewController {
     
+    @IBOutlet weak var highText: UITextField!
     // Views that need to be accessible to all methods
     let jsonResult = UILabel()
     
@@ -209,6 +210,7 @@ class ViewController : UIViewController {
         var allConstraints = [NSLayoutConstraint]()
         
         // Create a dictionary of views that will be used in the layout constraints defined below
+        
         let viewsDictionary : [String : AnyObject] = [
             "title": jsonResult,
             "getData": getData]
