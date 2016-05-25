@@ -82,7 +82,7 @@ class ViewController : UIViewController {
                 //var currentLocation = CLLocation()
                 
                 self.highLabel.text = "With a high of "     + high + "°F"
-                self.lowLabel.text = "With a low of "       + low + "°F"
+                self.lowLabel.text = "And a low of "       + low + "°F"
                 self.textLabel.text = "Todays weather is "  + text
                 
             }
@@ -224,7 +224,7 @@ class ViewController : UIViewController {
         
         // Define the vertical constraints
         let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-50-[getData]-[title]",
+            "V:|-500-[getData]-[title]",
             options: [],
             metrics: nil,
             views: viewsDictionary)
